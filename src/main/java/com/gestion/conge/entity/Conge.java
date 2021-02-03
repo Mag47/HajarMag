@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @SequenceGenerator(name = "seqConge")
 public class Conge {
@@ -16,12 +18,15 @@ public class Conge {
 	private TypeC typec;
 	
 	@Column(name = "Date_demande",columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate demande=LocalDate.now();
 	
 	@Column(name = "Date_debut",columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate debut;
 	
 	@Column(name = "Date_fin",columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fin;
 	
 	@Column(name = "Nbr_jours")
@@ -56,6 +61,11 @@ public class Conge {
 	}
 	
 	
+	public Conge(LocalDate date) {
+		
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

@@ -7,6 +7,12 @@
 <head>
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
 <c:set var="emp" value="${pageContext.request.userPrincipal.principal.utilisateur}"/>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	
 <link rel="stylesheet" href="${ctx}/css/style.css">
 
 <meta charset="UTF-8">
@@ -18,12 +24,10 @@
 		alt="AJC FORMATION">
 </div>
 
-<div class="header-inner-cell ">
-	<jsp:include page="logout.jsp"></jsp:include>
-</div>
-
 <body>
-
+<div class="header-inner-cell">
+<jsp:include page="logout.jsp"></jsp:include>
+</div>
 <div sec:authorize="isAuthenticated()">
 
 
@@ -49,8 +53,8 @@
 
 	<div class="title1-center">
 		<p class="title1">Gestion des congés</p>
-		<button class="button1">Nouvelle demande</button>
-		<button class="button1">Liste de mes demandes</button>
+		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Nouvelle demande</a>
+		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Liste de mes demandes</a>
 	</div>
 </div>
 </body>

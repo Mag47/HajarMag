@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<h2>
-			au revoir <a href="${ctx}" class="btn btn-link">accueil</a>
+			au revoir <a href="${ctx}" class="btn btn-link"></a>
 		</h2>
 	</div>
 </body>
