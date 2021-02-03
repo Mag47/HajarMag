@@ -2,17 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html>
 <head>
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
-<c:set var="emp" value="${pageContext.request.userPrincipal.principal.utilisateur}"/>
+<c:set var="emp"
+	value="${pageContext.request.userPrincipal.principal.utilisateur}" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-	
+
 <link rel="stylesheet" href="${ctx}/css/style.css">
 
 <meta charset="UTF-8">
@@ -24,14 +27,10 @@
 		alt="AJC FORMATION">
 </div>
 
+		<jsp:include page="logout.jsp"></jsp:include>
 <body>
-<div class="header-inner-cell">
-<jsp:include page="logout.jsp"></jsp:include>
-</div>
-<div sec:authorize="isAuthenticated()">
 
-
-	<table class="en-tete"> 
+	<table class="en-tete">
 		<tr>
 			<td colspan="2">Nom :</td>
 			<td>${emp.nom}</td>
@@ -53,9 +52,14 @@
 
 	<div class="title1-center">
 		<p class="title1">Gestion des congés</p>
-		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Nouvelle demande</a>
-		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Liste de mes demandes</a>
+		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Nouvelle
+			demande</a> <a href="${ctx}/nouvelleDemande/list"
+			class="btn btn-outline-light">Liste de mes demandes</a>
+
+		<sec:authorize access="hasRole('ROLE_MANAGER')">
+			<a href="${ctx}/nouvelleDemande/list" class="btn btn-outline-light">Validation
+				des demandes en attentes</a>
+		</sec:authorize>
 	</div>
-</div>
 </body>
 </html>
