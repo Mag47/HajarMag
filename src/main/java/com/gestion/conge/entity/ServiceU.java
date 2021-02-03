@@ -5,18 +5,20 @@ import java.util.List;
 import javax.persistence.*;
 @Entity
 @Table(name = "service")
-public class Service {
+@SequenceGenerator(name = "seqService", sequenceName = "seq_service", initialValue = 10, allocationSize = 1)
+
+public class ServiceU {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqService")
 	private Integer id;
 	private String libelle;
 	@OneToMany(mappedBy = "service")
 	private List<Utilisateur> utilisateur;
 	
-	public Service() {
+	public ServiceU() {
 	}
 
-	public Service(String libelle) {
+	public ServiceU(String libelle) {
 		this.libelle = libelle;
 	}
 
@@ -60,7 +62,7 @@ public class Service {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Service other = (Service) obj;
+		ServiceU other = (ServiceU) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

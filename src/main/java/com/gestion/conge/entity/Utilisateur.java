@@ -43,14 +43,14 @@ public class Utilisateur{
 	
 	@ManyToOne
 	@JoinColumn(name = "id_s")
-	protected Service service;
+	protected ServiceU service;
 	
 	protected Integer id_manager;
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String nom, String prenom,String mail, String password,  Role role,Service service, Integer id_manager) {
+	public Utilisateur(String nom, String prenom,String mail, String password,  Role role,ServiceU service, Integer id_manager) {
 		this.nom = nom;
 		this.prenom = prenom;		
 		this.mail = mail;
@@ -116,11 +116,11 @@ public class Utilisateur{
 		this.conge = conge;
 	}
 
-	public Service getService() {
+	public ServiceU getService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setService(ServiceU service) {
 		this.service = service;
 	}
 

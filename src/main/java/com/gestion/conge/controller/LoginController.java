@@ -1,7 +1,11 @@
 package com.gestion.conge.controller;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.gestion.conge.entity.Utilisateur;
 
 @Controller
 public class LoginController {
@@ -13,6 +17,8 @@ public class LoginController {
 
 	@GetMapping("/accueil")
 	public String home() {
+		//SecurityContext ctx = SecurityContextHolder.getContext();				
+		//Utilisateur emp = (Utilisateur) ctx.getAuthentication().getPrincipal();
 		return "accueil";
 	}
 	

@@ -16,6 +16,9 @@ public class UserDetailsWithUtilisateur implements UserDetails {
 		this.utilisateur = utilisateur;
 	}
 
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;
+	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(new SimpleGrantedAuthority(utilisateur.getRole().toString()));

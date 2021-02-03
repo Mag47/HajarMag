@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.gestion.conge.entity.Conge;
-import com.gestion.conge.entity.Service;
+import com.gestion.conge.entity.ServiceU;
 
 
 public interface CongeRepository extends JpaRepository<Conge, Integer>{
 	@Query("select p from Conge p where p.utilisateur.service=:param")
-	public List<Conge> findAllConge(@Param("param") Service service);
+	public List<Conge> findAllConge(@Param("param") ServiceU service);
 	
 
 }
