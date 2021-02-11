@@ -55,7 +55,11 @@
 		<a href="${ctx}/nouvelleDemande/add" class="btn btn-outline-light">Nouvelle
 			demande</a> <a href="${ctx}/nouvelleDemande/list"
 			class="btn btn-outline-light">Liste de mes demandes</a>
-
+			
+		<sec:authorize access="hasRole('ROLE_ADMINISTRATEUR')">
+			<a href="http://localhost:4200" class="btn btn-outline-light">Gestion des employés</a>
+		</sec:authorize>
+		
 		<sec:authorize access="hasRole('ROLE_MANAGER')">
 			<a href="${ctx}/nouvelleDemande/list" class="btn btn-outline-light">Validation
 				des demandes en attentes</a>
