@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.gestion.conge.entity.GestionJson.NiveauBase;
+
  
 @Entity
 @Table(name = "utilisateur")
@@ -26,25 +29,30 @@ public class Utilisateur{
 	private Integer id;
 	
 	@Column(name = "mail", length = 200)
+	@JsonView(GestionJson.NiveauBase.class)
 	private String mail;
 	@Column(name = "password", length = 200)
 	private String password;
 	@Column(name = "nom", length = 100)
+	@JsonView(GestionJson.NiveauBase.class)
 	protected String nom;
 	@Column(name = "prenom", length = 100)
+	@JsonView(GestionJson.NiveauBase.class)
 	protected String prenom;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
+	@JsonView(GestionJson.NiveauBase.class)
 	private Role role;
 	
 	@Enumerated(EnumType.STRING)
 	@OneToMany(mappedBy = "utilisateur")
+	@JsonView(GestionJson.EmployeAvecConge.class)
 	private List<Conge> conge;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_s")
 	protected ServiceU service;
-	
+	@JsonView(GestionJson.EmployeAvecConge.class)
 	protected Integer id_manager;
 
 	public Utilisateur() {

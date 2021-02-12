@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name = "seqConge")
 public class Conge {
@@ -23,24 +25,31 @@ public class Conge {
 	private Integer id;
 	
 	@Enumerated(EnumType.STRING)
+	@JsonView(GestionJson.NiveauBase.class)
 	private TypeC typec;
 	@Column(name = "Date_demande",columnDefinition = "DATE")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(GestionJson.NiveauBase.class)
 	private LocalDate demande=LocalDate.now();
 	
 	@Column(name = "Date_debut",columnDefinition = "DATE")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(GestionJson.NiveauBase.class)
 	private LocalDate debut;
 	
 	@Column(name = "Date_fin",columnDefinition = "DATE")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(GestionJson.NiveauBase.class)
 	private LocalDate fin;
 	
 	@Column(name = "Nbr_jours")
+	@JsonView(GestionJson.NiveauBase.class)
 	private double nbr_jours;
-	
+	@JsonView(GestionJson.NiveauBase.class)
 	private String motif;
+	@JsonView(GestionJson.NiveauBase.class)
 	private String statut;
+	@JsonView(GestionJson.NiveauBase.class)
 	private String commentaire;
 	@ManyToOne
 	private Utilisateur utilisateur;

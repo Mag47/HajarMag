@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.gestion.conge.entity.GestionJson;
 import com.gestion.conge.entity.Role;
 import com.gestion.conge.entity.Utilisateur;
 import com.gestion.conge.exception.UserInvalidException;
@@ -37,11 +39,19 @@ public class EmployeControllerRest {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping({ "", "/" })
+	@JsonView(GestionJson.NiveauBase.class)
 	public List<Utilisateur> getUsers(){
 		return userRepository.findAllByRole(Role.ROLE_EMPLOYE);
 	}
 	
+	@GetMapping( "/conge" )
+	@JsonView(GestionJson.EmployeAvecConge.class)
+	public List<Utilisateur> getUsersWithConge(){
+		return userRepository.findAllByRole(Role.ROLE_EMPLOYE);
+	}
+	
 	@PostMapping("/add")
+	@JsonView(GestionJson.NiveauBase.class)
 	public ResponseEntity<Void> ajoutUser(@Valid @RequestBody Utilisateur user, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new UserInvalidException();
@@ -52,6 +62,7 @@ public class EmployeControllerRest {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	@DeleteMapping("/{id}")
+	@JsonView(GestionJson.NiveauBase.class)
 	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
 		Optional<Utilisateur> user = userRepository.findById(id);
 		if(user.get()==null){
@@ -61,6 +72,7 @@ public class EmployeControllerRest {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	@PutMapping("/{id}")
+	@JsonView(GestionJson.NiveauBase.class)
 	public Utilisateur update(@Valid @RequestBody Utilisateur p, BindingResult br, @PathVariable("id") Integer id) {
 		if (br.hasErrors()) {
 			throw new UserInvalidException();

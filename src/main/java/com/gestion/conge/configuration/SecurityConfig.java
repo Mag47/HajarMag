@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,14 +23,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Configuration
 	@Order(1)
 	class ImplementationSecurity extends WebSecurityConfigurerAdapter{
-
+		@Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers("/css/**");
+		}
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			// @formatter:off
 
-			http.authorizeRequests()
-			.antMatchers("/", "/css/**").permitAll()
+			http.antMatcher("/basic/**")
+			.authorizeRequests()
+			.antMatchers("/basic/login","/basic/logout").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -64,9 +69,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			//activation des restcontroller
 			http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-			.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous()
+			.csrf().ignoringAntMatchers("/api/**")
 			.and()
-			.csrf().disable().authorizeRequests()
+			.antMatcher("/api/**")
+			.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous()
 			.antMatchers("/api/**").authenticated()
 			.and().httpBasic();
 			// @formatter:on
