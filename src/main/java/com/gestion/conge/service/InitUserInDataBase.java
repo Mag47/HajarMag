@@ -32,6 +32,6 @@ public class InitUserInDataBase implements CommandLineRunner {
 		Utilisateur u = new Utilisateur("Ram", "Hajar", "hajar@gmail.com", passwordEncorder.encode("hajar"), Role.ROLE_ADMINISTRATEUR, s1, 11);
 		userRepo.save(u);
 		Utilisateur u2 = new Utilisateur("coco", "mami", "mami@gmail.com", passwordEncorder.encode("mami"), Role.ROLE_EMPLOYE, s1, 10);
-		
+		userRepo.save(u2);
 	}
 }
