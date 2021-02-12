@@ -1,4 +1,4 @@
-package com.gestion.conge.entity;
+package com.gestion.conge.service;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,6 +6,8 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.gestion.conge.entity.Utilisateur;
 
 public class UserDetailsWithUtilisateur implements UserDetails {
 

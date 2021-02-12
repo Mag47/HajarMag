@@ -19,7 +19,7 @@ import com.gestion.conge.repository.UtilisateurRepository;
 import com.gestion.conge.service.UtilisateurService;
 
 @Controller
-@RequestMapping("/employe")
+@RequestMapping("/basic/employe")
 public class EmployeController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class EmployeController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "id") Integer numero) {
 		userRepo.deleteById(numero);
-		return new ModelAndView("redirect:/employe");
+		return new ModelAndView("redirect:/basic/employe");
 	}
 
 	@GetMapping("/edit")
@@ -65,6 +65,6 @@ public class EmployeController {
 			return goForm(employe);
 		}
 		userRepo.save(employe);
-		return new ModelAndView("redirect:/employe");
+		return new ModelAndView("redirect:/basic/employe");
 	}
 }

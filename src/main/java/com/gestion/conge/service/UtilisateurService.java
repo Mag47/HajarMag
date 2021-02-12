@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.gestion.conge.entity.UserDetailsWithUtilisateur;
 import com.gestion.conge.entity.Utilisateur;
 import com.gestion.conge.repository.UtilisateurRepository;
 

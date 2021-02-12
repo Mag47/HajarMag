@@ -28,7 +28,7 @@ import com.gestion.conge.repository.UtilisateurRepository;
 
 
 @RestController
-@RequestMapping("/employes")
+@RequestMapping("/api/employes")
 @CrossOrigin(origins="*")
 public class EmployeControllerRest {
 	@Autowired

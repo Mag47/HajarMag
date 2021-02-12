@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gestion.conge.entity.Conge;
-import com.gestion.conge.entity.UserDetailsWithUtilisateur;
 import com.gestion.conge.entity.Utilisateur;
 import com.gestion.conge.repository.CongeRepository;
 import com.gestion.conge.repository.UtilisateurRepository;
+import com.gestion.conge.service.UserDetailsWithUtilisateur;
 
 @Controller
-@RequestMapping("/nouvelleDemande")
+@RequestMapping("/basic/nouvelleDemande")
 public class CongeController {
 
 	@Autowired
@@ -64,12 +64,12 @@ public class CongeController {
 			return goForm(conge);
 		}
 		congeRepo.save(conge);
-		return new ModelAndView("redirect:/accueil");
+		return new ModelAndView("redirect:/basic/accueil");
 	}
 	
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "id") Integer numero) {
 		congeRepo.deleteById(numero);
-		return new ModelAndView("redirect:/nouvelleDemande/list");
+		return new ModelAndView("redirect:/basic/nouvelleDemande/list");
 	}
 }
